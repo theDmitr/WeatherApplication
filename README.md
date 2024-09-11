@@ -6,11 +6,11 @@ API for storing and retrieving weather.
 + ``HTTP GET /weatherPart`` - the endpoint for obtaining weather data for a specified period and location.<br>
 Takes next arguments:
 
-|    Key     |         Data type          | Mandatory |  Example   |
-|:----------:|:--------------------------:|:---------:|:----------:|
-| dateFirst  | Date (YYYY-MM-DD hh:mm:ss) |     +     | 2024-09-12 |
-| dateSecond | Date (YYYY-MM-DD hh:mm:ss) |     -     | 2024-09-13 |
-|  location  |           String           |     +     | "Kostroma" |
+|    Key     |     Data type     | Mandatory |  Example   |
+|:----------:|:-----------------:|:---------:|:----------:|
+| dateFirst  | Date (YYYY-MM-DD) |     +     | 2024-09-12 |
+| dateSecond | Date (YYYY-MM-DD) |     -     | 2024-09-13 |
+|  location  |      String       |     +     | "Kostroma" |
 
 + ``HTTP POST /weatherPart`` - the endpoint for storing weather data for a specified period and location.<br>
   Takes next arguments:
