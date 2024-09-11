@@ -1,15 +1,12 @@
 package dmitr.weather.service.face;
 
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.dto.WeatherPartDto;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface WeatherPartService {
 
-    List<WeatherPartDto> getWeatherParts(LocalDate date);
-
-    List<WeatherPartDto> getWeatherParts(LocalDate dateFrom, LocalDate dateTo);
-
+    List<WeatherPartDto> getWeatherParts(WeatherPartsSearchDto weatherPartsSearchDto);
     void createWeatherPart(WeatherPartDto weatherPart);
 }

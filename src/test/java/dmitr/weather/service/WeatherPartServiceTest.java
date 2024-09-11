@@ -2,6 +2,7 @@ package dmitr.weather.service;
 
 import dmitr.weather.WeatherApplication;
 import dmitr.weather.dto.WeatherPartDto;
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.enums.WeatherType;
 import dmitr.weather.enums.WindDirection;
 import dmitr.weather.service.face.WeatherPartService;
@@ -30,7 +31,7 @@ class WeatherPartServiceTest {
     @BeforeAll
     public void init() {
         newWeatherPartDto = new WeatherPartDto(LocalDateTime.now(), 15.0f, 3.0f,
-                WindDirection.NORTH, 1.0f, WeatherType.CLOUDY);
+                WindDirection.NORTH, 1.0f, WeatherType.CLOUDY, "Kostroma");
     }
 
     @Test
@@ -41,6 +42,7 @@ class WeatherPartServiceTest {
     @Test
     public void getWeatherParts() {
         LocalDate date = LocalDate.from(newWeatherPartDto.getDateTime());
-        weatherPartService.getWeatherParts(date);
+        WeatherPartsSearchDto searchDto = new WeatherPartsSearchDto(date, "Kostroma");
+        weatherPartService.getWeatherParts(searchDto);
     }
 }

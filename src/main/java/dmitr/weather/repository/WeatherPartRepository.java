@@ -14,11 +14,19 @@ import java.util.Optional;
 @Repository
 public interface WeatherPartRepository extends JpaRepository<WeatherPart, Long> {
 
-    Optional<WeatherPart> findByDateTime(LocalDateTime dateTime);
+    Optional<WeatherPart> findByDateTimeAndLocation(LocalDateTime dateTime,
+                                                    String location);
 
-    @Query(value = "SELECT * FROM weather_parts WHERE CAST(weather_parts.date_time AS DATE) = :date", nativeQuery = true)
-    List<WeatherPart> findByDate(@Param("date") LocalDate date);
+    @Query(value = "SELECT * FROM weather_parts " +
+            "WHERE CAST(weather_parts.date_time AS DATE) = :date " +
+            "AND location = :location", nativeQuery = true)
+    List<WeatherPart> findAllByDateAndLocation(@Param("date") LocalDate date,
+                                               @Param("location") String location);
 
-    @Query(value = "SELECT * FROM weather_parts WHERE date_time BETWEEN :dateFrom AND :dateTo", nativeQuery = true)
-    List<WeatherPart> findAllByDateRange(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
+    @Query(value = "SELECT * FROM weather_parts " +
+            "WHERE date_time BETWEEN :dateFrom AND :dateTo " +
+            "AND location = :location", nativeQuery = true)
+    List<WeatherPart> findAllByDateRangeAndLocation(@Param("dateFrom") LocalDate dateFrom,
+                                                    @Param("dateTo") LocalDate dateTo,
+                                                    @Param("location") String location);
 }

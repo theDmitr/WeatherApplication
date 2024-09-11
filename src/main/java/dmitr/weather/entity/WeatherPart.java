@@ -30,4 +30,5 @@ public class WeatherPart {
     private WindDirection windDirection;
     private Float pressure;
     private WeatherType weatherType;
+    private String location;
 }

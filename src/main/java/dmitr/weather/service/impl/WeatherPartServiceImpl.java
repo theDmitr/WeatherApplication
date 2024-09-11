@@ -1,66 +1,54 @@
 package dmitr.weather.service.impl;
 
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.dto.WeatherPartDto;
 import dmitr.weather.entity.WeatherPart;
 import dmitr.weather.exception.extended.WeatherPartExistsException;
-import dmitr.weather.exception.extended.WeatherPartNotFoundException;
 import dmitr.weather.repository.WeatherPartRepository;
 import dmitr.weather.service.face.WeatherPartService;
 import dmitr.weather.validator.LocalDateValidator;
+import dmitr.weather.validator.SearchWeatherPartsDtoValidator;
 import dmitr.weather.validator.WeatherPartDtoValidator;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class WeatherPartServiceImpl implements WeatherPartService {
 
     private final WeatherPartRepository weatherPartRepository;
-    private final LocalDateValidator localDateValidator;
     private final WeatherPartDtoValidator weatherPartDtoValidator;
     private final ModelMapper modelMapper;
+    private final SearchWeatherPartsDtoValidator searchWeatherPartsDtoValidator;
 
     @Override
-    public List<WeatherPartDto> getWeatherParts(LocalDate dateTime) {
-        localDateValidator.validate(dateTime);
+    public List<WeatherPartDto> getWeatherParts(WeatherPartsSearchDto weatherPartsSearchDto) {
+        searchWeatherPartsDtoValidator.validate(weatherPartsSearchDto);
 
-        List<WeatherPartDto> weatherParts = weatherPartRepository.findByDate(dateTime)
-                .stream()
-                .map(wp -> modelMapper.map(wp, WeatherPartDto.class))
-                .toList();
+        List<WeatherPart> weatherParts;
 
-        if (weatherParts.isEmpty()) {
-            throw new WeatherPartNotFoundException();
+        if (weatherPartsSearchDto.getDateSecond() == null) {
+            weatherParts = weatherPartRepository.findAllByDateAndLocation(weatherPartsSearchDto.getDateFirst(),
+                    weatherPartsSearchDto.getLocation());
+        } else {
+            weatherParts = weatherPartRepository.findAllByDateRangeAndLocation(weatherPartsSearchDto.getDateFirst(),
+                    weatherPartsSearchDto.getDateSecond(), weatherPartsSearchDto.getLocation());
         }
 
-        return weatherParts;
-    }
-
-    @Override
-    public List<WeatherPartDto> getWeatherParts(LocalDate dateFrom, LocalDate dateTo) {
-        localDateValidator.validate(dateFrom, dateTo);
-
-        List<WeatherPartDto> weatherParts = weatherPartRepository.findAllByDateRange(dateFrom, dateTo)
-                .stream()
+        return weatherParts.stream()
                 .map(wp -> modelMapper.map(wp, WeatherPartDto.class))
                 .toList();
-
-        if (weatherParts.isEmpty()) {
-            throw new WeatherPartNotFoundException();
-        }
-
-        return weatherParts;
     }
 
     @Override
     public void createWeatherPart(WeatherPartDto weatherPartDto) {
         weatherPartDtoValidator.validate(weatherPartDto);
 
-        if (weatherPartRepository.findByDateTime(weatherPartDto.getDateTime()).isPresent()) {
+        if (weatherPartRepository.findByDateTimeAndLocation(weatherPartDto.getDateTime(),
+                weatherPartDto.getLocation()).isPresent()) {
             throw new WeatherPartExistsException();
         }
 

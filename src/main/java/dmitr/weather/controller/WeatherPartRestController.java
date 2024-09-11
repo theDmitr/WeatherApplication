@@ -1,11 +1,11 @@
 package dmitr.weather.controller;
 
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.dto.WeatherPartDto;
 import dmitr.weather.service.face.WeatherPartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -15,15 +15,9 @@ public class WeatherPartRestController {
 
     private final WeatherPartService weatherPartService;
 
-    @GetMapping("/{date}")
-    public List<WeatherPartDto> getWeatherPart(@PathVariable("date") LocalDate date) {
-        return weatherPartService.getWeatherParts(date);
-    }
-
-    @GetMapping("/{dateFrom}/{dateTo}")
-    public List<WeatherPartDto> getWeatherParts(@PathVariable("dateFrom") LocalDate dateFrom,
-                                                @PathVariable("dateTo") LocalDate dateTo) {
-        return weatherPartService.getWeatherParts(dateFrom, dateTo);
+    @GetMapping
+    public List<WeatherPartDto> getWeatherPart(@RequestBody WeatherPartsSearchDto weatherPartsSearchDto) {
+        return weatherPartService.getWeatherParts(weatherPartsSearchDto);
     }
 
     @PostMapping

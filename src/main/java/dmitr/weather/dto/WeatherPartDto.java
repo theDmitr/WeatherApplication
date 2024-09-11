@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WeatherPartDto {
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTime;
     private Float temperature;
@@ -22,4 +23,5 @@ public class WeatherPartDto {
     private WindDirection windDirection;
     private Float pressure;
     private WeatherType weatherType;
+    private String location;
 }
