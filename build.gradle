@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = "17"
+}
+
 jar {
     manifest {
         attributes 'Main-Class': 'dmitr.weather.WeatherApplication'
