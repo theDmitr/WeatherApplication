@@ -1,7 +1,7 @@
 package dmitr.weather.controller;
 
-import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.dto.WeatherPartDto;
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.service.face.WeatherPartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
