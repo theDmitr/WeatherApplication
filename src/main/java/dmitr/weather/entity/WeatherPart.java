@@ -25,18 +25,9 @@ public class WeatherPart {
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
-    @Column(nullable = false)
     private Float temperature;
-
-    @Column(nullable = false)
     private Float windSpeed;
-
-    @Column(nullable = false)
     private WindDirection windDirection;
-
-    @Column(nullable = false)
     private Float pressure;
-
-    @Column(nullable = false)
     private WeatherType weatherType;
 }

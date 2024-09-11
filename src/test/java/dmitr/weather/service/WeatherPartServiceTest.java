@@ -1,4 +1,4 @@
-package dmitr.weather.service.impl;
+package dmitr.weather.service;
 
 import dmitr.weather.WeatherApplication;
 import dmitr.weather.dto.WeatherPartDto;
