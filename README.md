@@ -28,3 +28,7 @@ Takes next arguments:
 ## Enums
 + WindDirection - ``NORTH, SOUTH, EAST, WEST, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST``
 + WeatherType - ``SUNNY, RAIN, THUNDERSTORM, CLOUDY, PARTLY_CLOUDY``
+
+## Run instruction
+To run this application, you need to run the following command:<br>
+``java -DDB_URL=url -DDB_USERNAME=username -DDB_PASSWORD=password -jar WeatherApplication.jar``
