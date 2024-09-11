@@ -10,6 +10,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Contains weather data, stored in a database
+ */
 @Getter
 @Setter
 @AllArgsConstructor

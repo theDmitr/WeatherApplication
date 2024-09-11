@@ -2,6 +2,9 @@ package dmitr.weather.configuration.message;
 
 import java.util.Locale;
 
+/**
+ * Custom MessageSource locales
+ */
 public class MessageLocale {
 
     public static Locale DEFAULT_LOCALE = new Locale("");

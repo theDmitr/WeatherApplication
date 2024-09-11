@@ -10,6 +10,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Dto for creation and response WeatherPart
+ */
 @Getter
 @Setter
 @NoArgsConstructor

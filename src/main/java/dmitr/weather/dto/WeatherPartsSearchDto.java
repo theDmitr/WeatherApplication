@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Dto for searching WeatherPart
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -8,6 +8,9 @@ import java.util.Locale;
 
 import static dmitr.weather.configuration.message.MessageLocale.DEFAULT_LOCALE;
 
+/**
+ * Provider for getting messages from exceptionMessages.properties file
+ */
 @RequiredArgsConstructor
 @Component
 public class MessageProvider {
