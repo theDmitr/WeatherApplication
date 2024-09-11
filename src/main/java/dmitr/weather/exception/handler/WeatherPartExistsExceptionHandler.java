@@ -16,7 +16,7 @@ public class WeatherPartExistsExceptionHandler extends ResponseEntityExceptionHa
     private final MessageProvider messageProvider;
 
     @ExceptionHandler(WeatherPartExistsException.class)
-    public ResponseEntity<Object> handleWeatherPartExistsException(WeatherPartExistsException e) {
+    public ResponseEntity<Object> handleWeatherPartExistsException(WeatherPartExistsException ignored) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(messageProvider.get("weatherPart.exists"));
     }

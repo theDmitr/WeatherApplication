@@ -1,12 +1,11 @@
 package dmitr.weather.service.impl;
 
-import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.dto.WeatherPartDto;
+import dmitr.weather.dto.WeatherPartsSearchDto;
 import dmitr.weather.entity.WeatherPart;
 import dmitr.weather.exception.extended.WeatherPartExistsException;
 import dmitr.weather.repository.WeatherPartRepository;
 import dmitr.weather.service.face.WeatherPartService;
-import dmitr.weather.validator.LocalDateValidator;
 import dmitr.weather.validator.SearchWeatherPartsDtoValidator;
 import dmitr.weather.validator.WeatherPartDtoValidator;
 import lombok.RequiredArgsConstructor;
