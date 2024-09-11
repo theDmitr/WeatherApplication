@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "3718c06a-88ae-4a37-8ca6-b45e31b017aa",
+		"name": "WeatherApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33852400"
+	},
+	"item": [
+		{
+			"name": "CreateWeatherPart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateTime\": \"2024-09-12 10:00:00\",\r\n    \"temperature\": 15,\r\n    \"windSpeed\": 3,\r\n    \"windDirection\": 2,\r\n    \"pressure\": 2,\r\n    \"weatherType\": 4,\r\n    \"location\": \"Kostroma\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/weatherPart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weatherPart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWeatherParts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateFirst\": \"2024-09-12\",\r\n    \"dateSecond\": \"2024-09-13\",\r\n    \"location\": \"Kostroma\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/weatherPart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weatherPart"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
