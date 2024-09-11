@@ -25,10 +25,12 @@ public class WeatherPart {
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
+    @Column(nullable = false)
+    private String location;
+
     private Float temperature;
     private Float windSpeed;
     private WindDirection windDirection;
     private Float pressure;
     private WeatherType weatherType;
-    private String location;
 }
