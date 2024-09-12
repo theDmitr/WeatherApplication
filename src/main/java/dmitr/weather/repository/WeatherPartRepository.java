@@ -18,13 +18,7 @@ public interface WeatherPartRepository extends JpaRepository<WeatherPart, Long> 
                                                     String location);
 
     @Query(value = "SELECT * FROM weather_parts " +
-            "WHERE CAST(weather_parts.date_time AS DATE) = :date " +
-            "AND location = :location", nativeQuery = true)
-    List<WeatherPart> findAllByDateAndLocation(@Param("date") LocalDate date,
-                                               @Param("location") String location);
-
-    @Query(value = "SELECT * FROM weather_parts " +
-            "WHERE date_time BETWEEN :dateFrom AND :dateTo " +
+            "WHERE CAST(date_time AS DATE) BETWEEN :dateFrom AND :dateTo " +
             "AND location = :location", nativeQuery = true)
     List<WeatherPart> findAllByDateRangeAndLocation(@Param("dateFrom") LocalDate dateFrom,
                                                     @Param("dateTo") LocalDate dateTo,

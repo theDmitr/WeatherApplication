@@ -27,17 +27,15 @@ public class WeatherPartServiceImpl implements WeatherPartService {
     public List<WeatherPartDto> getWeatherParts(WeatherPartsSearchDto weatherPartsSearchDto) {
         searchWeatherPartsDtoValidator.validate(weatherPartsSearchDto);
 
-        List<WeatherPart> weatherParts;
-
         if (weatherPartsSearchDto.getDateSecond() == null) {
-            weatherParts = weatherPartRepository.findAllByDateAndLocation(weatherPartsSearchDto.getDateFirst(),
-                    weatherPartsSearchDto.getLocation());
-        } else {
-            weatherParts = weatherPartRepository.findAllByDateRangeAndLocation(weatherPartsSearchDto.getDateFirst(),
-                    weatherPartsSearchDto.getDateSecond(), weatherPartsSearchDto.getLocation());
+            weatherPartsSearchDto.setDateSecond(weatherPartsSearchDto.getDateFirst());
         }
 
-        return weatherParts.stream()
+        return weatherPartRepository.findAllByDateRangeAndLocation(
+                        weatherPartsSearchDto.getDateFirst(),
+                        weatherPartsSearchDto.getDateSecond(),
+                        weatherPartsSearchDto.getLocation())
+                .stream()
                 .map(wp -> modelMapper.map(wp, WeatherPartDto.class))
                 .toList();
     }
